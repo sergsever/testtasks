@@ -1,0 +1,7 @@
+C:\work\Job\testTasks\testTasks\bin\Debug\testTasks.exe.config
+C:\work\Job\testTasks\testTasks\bin\Debug\testTasks.exe
+C:\work\Job\testTasks\testTasks\bin\Debug\testTasks.pdb
+C:\work\Job\testTasks\testTasks\obj\Debug\testTasks.csproj.CoreCompileInputs.cache
+C:\work\Job\testTasks\testTasks\obj\Debug\testTasks.exe
+C:\work\Job\testTasks\testTasks\obj\Debug\testTasks.pdb
+C:\work\Job\testTasks\testTasks\obj\Debug\testTasks.csprojAssemblyReference.cache
