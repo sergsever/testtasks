@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Collections.Concurrent;
+using System.Threading;
 
 namespace testTasks
 {
@@ -38,38 +39,67 @@ namespace testTasks
 
 		static void Collections()
 		{
-			ConcurrentBag<int> intlist = new ConcurrentBag<int>();
-
-			Stopwatch watch = new Stopwatch();
+			List<int> intlist = new List<int>();
+			Object key = new object();
 			int maxValue = 10000000;
-			watch.Reset();
-			watch.Start();
 			Random rnd = new Random();
-			for(int i = 0; i < maxValue; ++i )
+			for (int i = 0; i < maxValue; ++i)
 			{
+				//				lock (key)
+				//				{
 				intlist.Add(rnd.Next(1, maxValue));
+				//				}
+
+
 			}
-			watch.Stop();
-			Debug.WriteLine("time: " + watch.ElapsedMilliseconds);
-
-
 		}
+
+		static Object key = new Object();
+		static void Looping()
+			{
+				for(int i = 0; i < 100; ++i)
+				{
+				lock (key)
+				{
+					Debug.WriteLine("index:" + Thread.CurrentThread.Name + " i: " + i);
+					Thread.Sleep(100);
+				}
+				}
+			}
 
 		static void Main(string[] args)
 		{
 			Debug.WriteLine("test tasks\n");
-			/*
-						int[] arr = new int[] { 1, 2,3,4,5};
-						reverseArray(arr);
-			*/
-			//			Debug.WriteLine("Fib:" + Fibonacci(8));
-			/*
-						int a = 3, b = 5;
-						SwapInt(ref a, ref b);
-						Debug.WriteLine("a: " + a + " b: " + b);
-			*/
-			Collections();
-		
+				/*
+							int[] arr = new int[] { 1, 2,3,4,5};
+							reverseArray(arr);
+				*/
+				//			Debug.WriteLine("Fib:" + Fibonacci(8));
+				/*
+							int a = 3, b = 5;
+							SwapInt(ref a, ref b);
+							Debug.WriteLine("a: " + a + " b: " + b);
+				*/
+				//			Collections();
+				/*
+							Stopwatch watch = new Stopwatch();
+
+							Thread thread = new Thread(new ThreadStart(Collections));
+							watch.Start();
+							thread.Start();
+							thread.Join();
+							watch.Stop();
+							Debug.WriteLine("Thread time: " + watch.ElapsedMilliseconds);
+				*/
+				Thread t1 = new Thread(new ThreadStart(Looping)), t2 = new Thread(new ThreadStart(Looping));
+			t1.Name = "First";
+			t2.Name = "Second";
+				t1.Start();
+				t2.Start();
+				t1.Join();
+
+
+
 
 
 

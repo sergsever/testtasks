@@ -6,7 +6,9 @@
 *.lo
 *.o
 *.obj
+
 Debug/
+bin/
 
 # Precompiled Headers
 *.gch
